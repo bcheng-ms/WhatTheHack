@@ -30,7 +30,7 @@ _Service Invocation is also covered in detail in the [Dapr for .NET Developers](
 
 For this hands-on challenge, you will decouple communication between two services.
 
-- Modify the `FineCollectionService` (`VehicleRegistrationService` class) so that it uses the Dapr service invocation building block to call the `/vehicleinfo/{licensenumber}` endpoint on the `VehicleRegistrationService`.
+- Modify the `FineCollectionService` (`VehicleRegistrationServiceProxy` class) so that it uses the Dapr service invocation building block to call the `/vehicleinfo/{licensenumber}` endpoint on the `VehicleRegistrationService`.
 - Start up a Dapr sidecar for the `VehicleRegistrationService`, `FineCollectionService` & `TrafficControlService`.
 - Run the `Simulation` application.
 
@@ -41,7 +41,7 @@ This challenge targets the operations labeled as **number 1** in the end-state s
 <img src="../images/Challenge-02/dapr-setup-assignment02.png" style="zoom: 67%;" />
 
 - Validate that the `VehicleRegistrationService`, `FineCollectionService` & `TrafficControlService` each run with a Dapr sidecar. You'll see both Dapr and application logging in the output.
-- Validate that the `FineCollectionService` uses the Dapr service invocation building block to call the `/vehicleinfo/{licensenumber}` endpoint on the `VehicleRegistrationService`. The HTTP call should be to the _Dapr_ port number, not the _API_ port number.
+- Validate that the `FineCollectionService` uses the Dapr service invocation building block to call the `/vehicleinfo/{licensenumber}` endpoint on the `VehicleRegistrationService`. The HTTP call should be to the _Dapr_ port number of the `FineCollectionService` local Dapr sidecar, not the _API_ port number of the `VehicleRegistrationService`.
 
 ### Use Dapr observability
 

@@ -50,12 +50,12 @@ This challenge targets the operations labeled as **number 2** in the end-state s
 - Put your Dapr configuration files in the `Resources/dapr/components` directory (you will see some existing files related to the Azure Kubernetes Service deployment in [Challenge-08](./Challenge-08.md), you can ignore these for now and put your files here as well)
 - You will need to specify the directory where you provide the custom Dapr configuration files when running the Dapr sidecars.
   ```shell
-  dapr run ... --components-path ../dapr/components -- dotnet run
+  dapr run ... --resources-path ../dapr/components -- dotnet run
   ```
+- You can either use _declarative_ or `_programmatic_ subscriptions to subscribe to a topic. See the [Dapr documentation](https://docs.dapr.io/developing-applications/building-blocks/pubsub/subscription-methods/) for more information. _Declarative_ is simpler for this example.
 - Use Zipkin to observe the messages flow as specified in [Challenge-02](./Challenge-02#use-dapr-observability).
-- You might want to create the Azure resources first as it takes some time for the resources to be ready if you didn't already create the resources in [Challenge-00](./Challenge-00.md#create-azure-resources).
 
-### Specific info for using the Dapr .NET SDK (not needed unless re-implementing `SpeedingViolation` using Dapr .NET SDK)
+### Specific info for using the Dapr .NET SDK for programmatic subscriptions (not needed unless implementing `SpeedingViolation` using Dapr .NET SDK)
 
 - Dapr wraps pub/sub messages inside the open-source CloudEvents message format. Upon receipt, the subscriber **must transform the message to a CloudEvent**. You must manually parse the incoming JSON and convert to a `SpeedingViolation` class.
   - The parameter type for receiving these CloudEvents message format is: `[FromBody] System.Text.Json.JsonDocument cloudEvent`.
@@ -64,6 +64,7 @@ This challenge targets the operations labeled as **number 2** in the end-state s
 ## Learning Resources
 
 - [Dapr documentation for publish / subscribe](https://docs.dapr.io/developing-applications/building-blocks/pubsub/pubsub-overview/)
+- [Dapr Declarative Subscriptions](https://docs.dapr.io/developing-applications/building-blocks/pubsub/subscription-methods/#declarative-subscriptions)
 - [Azure Service Bus Messaging - Overview](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview)
 - [Dapr and Azure Service Bus](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-azure-servicebus/)
 - [Dapr and RabbitMQ](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/)
