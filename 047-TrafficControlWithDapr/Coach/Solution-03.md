@@ -342,7 +342,7 @@ In this step, you'll simplify pub/sub messaging with the Dapr SDK for .NET. Firs
 
     ```csharp
     // publish speedingviolation
-    await daprClient.PublishEventAsync("pubsub", "collectfinetopic", speedingViolation);
+    await daprClient.PublishEventAsync("pubsub", "collectfine", speedingViolation);
     ```
 
 1. Open the file `Resources/TrafficControlService/Startup.cs`.
